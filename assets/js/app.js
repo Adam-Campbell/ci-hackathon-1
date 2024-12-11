@@ -1,4 +1,4 @@
-import serviceLayer from "./serviceLayer";
+import serviceLayer from "./serviceLayer.js";
 
 /**
  * serviceLayer is an object that exposes methods to interact with the API/auth.
@@ -69,3 +69,8 @@ import serviceLayer from "./serviceLayer";
  */
 
 
+
+// Example usage of the service layer:
+const playlistObject = await serviceLayer.createPlaylist("A message for my sibling", "Stop borrowing my stuff without asking me first!");
+// We have to use the `await` keyword here. If we don't, then `playlistObject` will be a 
+// promise object, not the playlist object itself.
