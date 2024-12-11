@@ -26,13 +26,17 @@ console.log("Hello, from main.js");
 
 function authorize() {
     const authorizeURLBase = "https://accounts.spotify.com/authorize"
-    const redirectURI = "http://127.0.0.1:5500/index.html"
+    //const redirectURI = "http://127.0.0.1:5500/index.html"
+    const url = new URL(window.location.href);
+    url.hash = "";
+    const currentUrl = url.href;
+    //console.log(window.location)
     const clientId = "e673f1cb411d40738fc0018486d5da42";
     const scopes = [
         "playlist-modify-public",
         "playlist-modify-private",
     ].join(" ");
-    const authorizeURL = `${authorizeURLBase}?client_id=${clientId}&response_type=token&redirect_uri=${redirectURI}&scope=${encodeURIComponent(scopes)}&show_dialog=true`;
+    const authorizeURL = `${authorizeURLBase}?client_id=${clientId}&response_type=token&redirect_uri=${encodeURIComponent(currentUrl)}&scope=${encodeURIComponent(scopes)}&show_dialog=true`;
     window.location = authorizeURL;
 }
 
