@@ -1,19 +1,23 @@
+import { beginLoginFlow, getAccessToken, initializeLoginState, isLoggedIn } from "./auth.js";
 
-/**
- * Returns a boolean indicating whether the user is currently logged in. Currently, this function always returns false.
- * @returns 
- */
-function isLoggedIn() {
-    return false;
-}
 
-/**
- * Initiates the login flow, redirecting the user to the Spotify login page. Currently not fully functional, it just performs basic redirect.
- */
-function beginLoginFlow() {
-    const authorizeURLBase = "https://accounts.spotify.com/authorize";
-    window.location = authorizeURLBase;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /**
  * Creates playlist based on title and message. Currently, this function just returns a mock object.
@@ -87,6 +91,19 @@ async function createPlaylist(title, message) {
     console.log(mockData);
     return mockData;
 }
+
+
+
+
+
+
+document.getElementById("login-button").addEventListener("click", beginLoginFlow);
+
+// Just for debugging, delete this line later.
+window.isLoggedIn = isLoggedIn;
+
+initializeLoginState();
+
 
 
 export default {
