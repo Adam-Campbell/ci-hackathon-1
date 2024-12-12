@@ -1,19 +1,51 @@
+let accessToken = null;
+
 
 /**
  * Returns a boolean indicating whether the user is currently logged in. Currently, this function always returns false.
  * @returns 
  */
 function isLoggedIn() {
+    // Check local storage for access token. If it exists and has not expired, then
+    // retrieve access token and store in module-level accessToken variable. Then return true.
+
+    // If access token does not exist or has expired, check whether the URL contains an access token.
+    // If it does, store the access token in local storage, store it in the module-level accessToken variable,
+    // and return true.
+
+    // If none of the above conditions are met, return false.
     return false;
 }
+
+
+function storeToken() {
+    const urlParams = new URLSearchParams(window.location.hash.substring(1));
+    const accessToken = urlParams.get("access_token");
+    const expiresIn = urlParams.get("expires_in");
+    if (accessToken && expiresIn) {
+        const expiresAt = Date.now() + (parseInt(expiresIn) * (1000 / 2));
+        localStorage.setItem("accessToken", accessToken);
+        localStorage.setItem("expiresAt", expiresAt);
+        history.replaceState(null, null, " ");
+    }
+}
+
+
+
+
 
 /**
  * Initiates the login flow, redirecting the user to the Spotify login page. Currently not fully functional, it just performs basic redirect.
  */
 function beginLoginFlow() {
+    // Construct the authorize URL by combining the base URL with all of the necessary query parameters.
     const authorizeURLBase = "https://accounts.spotify.com/authorize";
+
+
+    // Redirect the user to the authorize URL.
     window.location = authorizeURLBase;
 }
+
 
 /**
  * Creates playlist based on title and message. Currently, this function just returns a mock object.
