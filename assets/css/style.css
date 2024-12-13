@@ -85,3 +85,9 @@ main {
     text-align: center;
     background-color: #1db954;
 }
+footer {
+    background-color: #000000;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+}
