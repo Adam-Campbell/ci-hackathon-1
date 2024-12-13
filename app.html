@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <title>Login - Spotify Playlist Transfer Protocol</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
 
     <header>
@@ -22,17 +24,19 @@
     <div class="form-container mt-5">
         <div class="container">
             <div class="col-md-8 col-lg-6">
-                <div class="card">
+                <div class="form-card">
                     <div class="card-body">
                         <h2 class="card-title text-center mb-4">Create your playlist</h2>
                         <form id="create-playlist-form">
                             <div class="mb-3 text-center">
                                 <label for="playlist-title" class="form-label"></label>
-                                <textarea class="form-control" id="playlist-title" rows="1" required>Playlist Title</textarea>
+                                <textarea class="form-control" id="playlist-title" rows="1"
+                                    required>Playlist Title</textarea>
                             </div>
                             <div class="mb-3 text-center">
                                 <label for="playlist-message" class="form-label"></label>
-                                <textarea class="form-control" id="playlist-message" rows="3" required>Playlist Message</textarea>
+                                <textarea class="form-control" id="playlist-message" rows="3"
+                                    required>Playlist Message</textarea>
                             </div>
                             <button type="submit" class="btn btn-primary w-100">Create Playlist</button>
                         </form>
@@ -40,15 +44,34 @@
                 </div>
             </div>
         </div>
-    
-    </div>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 SPTP. All Rights Reserved.</p>
+    </div>
+    <div class="playlist-container">
+        <div class="col-md-8 col-lg-6 mx-auto text-center">
+            <label for="formFile" class="form-label">Here is your playlist</label>
+            <input class="form-control mb-4" type="file" id="formFile">
         </div>
-        
-    </footer>
+        <div class="col-md-8 col-lg-6 mx-auto text-center">
+            <input class="form-control mb-4" type="file" id="formFile">
+        </div>
+        <div class="col-md-8 col-lg-6 mx-auto text-center">
+             <input class="form-control mb-4" type="file" id="formFile">
+        </div>
+        <div class="col-md-8 col-lg-6 mx-auto text-center">
+              <input class="form-control mb-4" type="file" id="formFile">
+        </div>
+        <div class="col-md-8 col-lg-6 mx-auto text-center">
+             <input class="form-control mb-4" type="file" id="formFile">
+        </div>
+        </main>
+
+
+        <footer>
+            <div class="container">
+                <p>&copy; 2024 SPTP. All Rights Reserved.</p>
+            </div>
+
+        </footer>
 
 
 
