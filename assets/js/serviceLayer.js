@@ -12,6 +12,7 @@ initializeLoginState();
 window.createPlaylist = createPlaylist;
 
 export default {
+    initializeLoginState,
     isLoggedIn,
     beginLoginFlow,
     createPlaylist

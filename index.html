@@ -23,71 +23,80 @@
         </nav>
     </header>
     <main>
-        <div class="hero">
+        <div id="landing-page-wrapper">
+            <div class="hero">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1>Spotify Playlist Transfer Protocol:</h1>
+                        <p>Craft playlists that <em>say something</em>.</p>
+                        <button id="hero-login" class="btn btn-primary">Log In</button>
+                    </div>
+                </div>
+            </div>
+
             <div class="container">
-                <div class="hero-content">
-                    <h1>Spotify Playlist Transfer Protocol:</h1>
-                    <p>Craft Playlist that <span class="highlight">say something</span>.</p>
-                    <a href="login.html" class="btn btn-primary">Login</a>
-                </div>
+                <h2>What is SPTP?</h2>
+                <p>Ever wanted your playlists to deliver a message? With SPTP, your playlists are more than just
+                    music - they're statements. We take your custom text and trasnform it into a playlist, carefully
+                    selecting song titles that spell out your message. The result? A playlist that's as fun and unique as
+                    you are.
+                </p>
             </div>
-        </div>
 
-        <div class="container">
-            <h2>What is SPTP?</h2>
-            <p>Ever wanted your playlists to deliver a message? with SPTP,your playlists are more than just
-                music--they're statements.We take your custom text and trasnform it into a playlist,carefully
-                selecting song titles that spell out your message.The result? A playlist that's as fun and unique as
-                you are.
-            </p>
-        </div>
+            <div class="container">
+                <h2>How it works</h2>
+            </div>
 
-        <div class="container">
-            <h2>How it works</h2>
-         </div>
-
-         <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <i class="fa-solid fa-message"></i>
-                            <h3 class="card-title">Write your message</h3>
-                            <p class="card-text">Think of something clever, heartfelt, or hilarious.</p>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <i class="fa-solid fa-message"></i>
+                                <h3 class="card-title">Write your message</h3>
+                                <p class="card-text">Think of something clever, heartfelt, or hilarious.</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <i class="fa-solid fa-wand-magic-sparkles"></i>
-                            <h3 class="card-title">Let us Work the Magic</h3>
-                            <p class="card-text">We serch Spotify for track to match your Text.</p>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                <h3 class="card-title">Let us work the magic</h3>
+                                <p class="card-text">We search Spotify for tracks to match your text.</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <i class="fa-solid fa-share"></i>
-                            <h3 class="card-title">Save and Share</h3>
-                            <p class="card-text">Add playlist to your Account and share with your friends.</p>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <i class="fa-solid fa-share"></i>
+                                <h3 class="card-title">Save and share</h3>
+                                <p class="card-text">Add the playlist to your account and share it with friends.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        </main>
-
-        <div class="container-fluid">
-            <div class="row justify-content-center">
-                <div class="col-md-6 text-center">
-                    <h2>Ready to get started?</h2>
-                    <a href="login.html" class="btn btn-primary">Login</a>
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 text-center">
+                        <h2>Ready to get started?</h2>
+                        <button id="footer-login" class="btn btn-primary">Log In</button>
+                    </div>
                 </div>
             </div>
+        </div> <!-- end landing-page-wrapper -->
+
+
+        <div id="app-wrapper">
+
         </div>
-       
+        
+    </main>
+
+        
+     
             
     
 
@@ -105,7 +114,8 @@
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
             </script>
         <script src="https://kit.fontawesome.com/8669b8ad66.js" crossorigin="anonymous"></script>
-        <script src="assets/js/script.js"></script>
+        <!-- Our JS -->
+        <script type="module" src="assets/js/app.js"></script>
 </body>
 
 </html>
