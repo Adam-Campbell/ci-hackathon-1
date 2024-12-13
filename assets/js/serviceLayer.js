@@ -1,5 +1,5 @@
 import { beginLoginFlow, getAccessToken, initializeLoginState, isLoggedIn } from "./auth.js";
-import { TrackCache } from "./playlistCreation.js";
+import { TrackCache, getTracksForToken, constructPlaylistTracks } from "./playlistCreation.js";
 
 
 
@@ -106,7 +106,8 @@ window.isLoggedIn = isLoggedIn;
 initializeLoginState();
 
 window.trackCache = new TrackCache();
-
+window.getTracksForToken = getTracksForToken;
+window.constructPlaylistTracks = constructPlaylistTracks;
 
 export default {
     isLoggedIn,

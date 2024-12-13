@@ -1,5 +1,9 @@
 /**
  * 
+ * ROUGH NOTES - LEAVE HERE FOR NOW
+ * 
+ * 
+ * 
  * We start by discussing what this module needs to do.
  * 
  * From an outside perspective, it takes in:
@@ -32,7 +36,7 @@
  * 
  * So, what does spelling out a token look like? We need a function that takes in a single token, and returns a list of
  * track objects that spell out the token. 
- * We could create a custom data structure for this, call it trackCache. You use it like this:
+ * We could create a custom data structure or class for this, call it trackCache. You use it like this:
  * trackCache.get("a");
  * And it returns a promise that resolves to a track object that represents the song "a" - either straight away
  * if the song is already in the cache, or after looking it up if it is not.
@@ -58,7 +62,10 @@
  *            for that letter (the details of exactly how don't matter right now).
  * 
  * 
- * 
+ * Something else we must consider is what to do with contractions. For example, if the message contains "I'm",
+ * do we replace it with the two tokens "I" and "am", or do we try to find a song that represents "I'm" directly?
+ * If we do try and find a track matching "I'm" directly, we need to decide what to do with the apostrophe if we
+ * end up having to spell the word - do we just ignore the apostrophe, so that "I'm" becomes the tracks "I" and "m"?
  * 
  * 
  * 
@@ -71,11 +78,15 @@
  * 
  */
 
-// Eventually, we will probably have a fetch abstraction that handles things like getting the accessToken to
-// make the request. For now, we'll just retrieve the access token directly.
-import { getAccessToken } from "./auth.js";
+
+import ApiClient from "./apiClient.js";
 
 
+/**
+ * Turns a duration in milliseconds into a string of the form "mm:ss"
+ * @param {*} milliseconds 
+ * @returns 
+ */
 function formatSongLength(milliseconds) {
     const totalSeconds = Math.floor(milliseconds / 1000);
     const minutes = Math.floor(totalSeconds / 60);
@@ -86,7 +97,10 @@ function formatSongLength(milliseconds) {
 
 
 
-
+/**
+ * This class is a custom data structure that allows us to look up single-letter songs by letter.
+ * Possibly needs a better name.
+ */
 export class TrackCache {
 
     static singleLetterTrackIds = {
@@ -117,9 +131,21 @@ export class TrackCache {
         "y": "2nfYd5u63QE2bhlYX4UvDH",
         "z": "37zezNOHfSJu088cJNbdtY" 
     };
+    static #instance = null;
 
     constructor() {
+        if (TrackCache.#instance) {
+            throw new Error("Use TrackCache.getInstance() to get the single instance of this class.");
+        }
         this.cache = new Map();
+        this.apiClient = ApiClient.getInstance();
+    }
+
+    static getInstance() {
+        if (!TrackCache.#instance) {
+            TrackCache.#instance = new TrackCache();
+        }
+        return TrackCache.#instance;
     }
 
     async get(letter) {
@@ -136,13 +162,7 @@ export class TrackCache {
     async lookupTrack(letter) {
         console.log(`Looking up track for letter ${letter}`);
         const trackId = TrackCache.singleLetterTrackIds[letter];
-        const accessToken = getAccessToken();
-        const response = await fetch(`https://api.spotify.com/v1/tracks/${trackId}`, {
-            headers: {
-                "Authorization": `Bearer ${accessToken}`
-            }
-        });
-        const data = await response.json();
+        const data = await this.apiClient.get(`https://api.spotify.com/v1/tracks/${trackId}`);
         return {
             name: data.name,
             imageUrl: data.album.images[2].url,
@@ -155,24 +175,50 @@ export class TrackCache {
 
 
 /**
- * name           data.name
- * imageUrl       data.album.images[2].url         (the 3rd image is a good size for our purposes)
- * artistName     data.artists[0].name
- * duration       formatSongLength(data.duration_ms)
- * id             data.id
- * 
- * 
- * 
- * 
+ * Gets the tracks that represent a single token (one word). Returns a promise that resolves 
+ * to an array of track objects - a single track object if we find an exact match for the token,
+ * or multiple track objects if we have to spell out the token.
+ * @param {*} token 
+ * @returns 
  */
+export async function getTracksForToken(token) {
+    token = token.toLowerCase();
+    // First, we try to match the whole token
+    const apiClient = ApiClient.getInstance();
+    const data = await apiClient.get(`https://api.spotify.com/v1/search?q=${token}&type=track&limit=50`);
+    for (const track of data.tracks.items) {
+        if (track.name.toLowerCase() === token) {
+            const formattedTrack = {
+                name: track.name,
+                imageUrl: track.album.images[2].url,
+                artistName: track.artists[0].name,
+                duration: formatSongLength(track.duration_ms),
+                id: track.id
+            };
+            return [formattedTrack];
+        }
+    }
+    // If we can't match the whole token, we spell it out instead.
+    // The requests run in parallel.
+    const trackCache = TrackCache.getInstance();
+    const tracks = await Promise.all([...token].map(letter => trackCache.get(letter)));
+    return tracks;
+}
 
 
-
-
-
-
-
-
-
-
+/**
+ * Constructs a playlist based on message (but does not post the playlist to Spotify).
+ * Outputs a promise that resolves to an array of track objects.
+ * @param {*} message 
+ * @returns 
+ */
+export async function constructPlaylistTracks(message) {
+    // Tokenise the message
+    let tokens = message.split(" ");
+    // For each token, pass it to getTracksForToken.
+    // The requests run in parallel.
+    const results = await Promise.all(tokens.map(token => getTracksForToken(token)));
+    // The result will be an array of arrays, so we must flatten it. 
+    return results.flat();
+}
 
