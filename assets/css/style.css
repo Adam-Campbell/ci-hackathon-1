@@ -1,5 +1,23 @@
+/* Ensure the body takes up the full height of the viewport */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
 main {
     background-color: #000000;
+    flex: 1;
+}
+/* Style for the footer */
+footer {
+    background-color: #000000;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }
 .navbar {
     background-color: #000000; /* Dark background */
@@ -90,19 +108,14 @@ main {
     text-align: center;
     background-color: #1db954;
 }
-footer {
-    background-color: #000000;
-    color: #ffffff;
-    text-align: center;
-    padding: 20px;
-}
+
 
 
 /* Center the form container */
 .form-container {
-    width: 50%;
-    margin: 50px auto;
-    padding: 20px;
+    width: auto;
+    margin: auto;
+    padding: 0px;
     border-radius: 10px; /* Optional: Add rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
     background: url(/assets/images/image1.png); /* Add the background image */
@@ -156,18 +169,15 @@ footer {
     background-color: #0056b3; /* Darker blue for hover effect */
 }
 
-/* Style for the footer */
-footer {
-    background-color: #000000;
-    color: #ffffff;
-    text-align: center;
-    padding: 20px;
-}
 
 
 
 
 
+
+
+
+/* style for playlist file*/
 
 
 
