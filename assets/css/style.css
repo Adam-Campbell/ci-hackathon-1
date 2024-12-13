@@ -31,7 +31,7 @@ footer {
     margin: 0 auto; /* Center the brand */
 }
 .hero {
-    background-image: url('/assets/images/image1.png'); /* Add the background image */
+    background-image: url('../images/image1.png'); /* Add the background image */
     background-size: cover; /* Ensure the image covers the entire section */
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Prevent the image from repeating */
@@ -113,18 +113,15 @@ footer {
 
 /* Center the form container */
 .form-container {
-    width: auto;
-    margin: auto;
-    padding: 0px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
     border-radius: 10px; /* Optional: Add rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
-    background: url(/assets/images/image1.png); /* Add the background image */
-    background-size: cover;
-    background-position: center;
-    background-color: rgba(255, 255, 255, 0.8);
+    background: url(../images/image1.png) no-repeat center center; /* Add the background image */
+    background-size: cover; /* Ensure the image covers the entire container */
     position: relative; /* Ensure the container is positioned relative to the background image */
-    z-index: 1; /* Ensure the container is above the background image */
-    
+    z-index: 1; /* Ensure the container content is above the background image */
 }
 
 /* Style for form headings */
@@ -176,8 +173,55 @@ footer {
 
 
 
-
 /* style for playlist file*/
+.playlist-container {
+    padding: 0px;
+    text-align: center;
+    background-color: #1db954;
+}
 
+.playlist-track-title{
+    font-size: 40px;
+    font-weight: bold;
+}
+.playlist-tracklist-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+
+}
+.track{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border: 2px solid #1db954;
+    border-radius: 5px;
+    margin: 10px;
+    width: 90%;
+    background-color: #1db954;
+    color: #ffffff;
+    text-align: center;
+}
+.track img{
+    width: 100px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.track-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    font-size: 30px;
+}
+playlist-track-title{
+    font-size: 30px;
+    font-weight: bold;
+}
 
 
