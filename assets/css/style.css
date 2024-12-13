@@ -1,11 +1,183 @@
-* {
-    box-sizing: border-box;
+/* Ensure the body takes up the full height of the viewport */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+main {
+    background-color: #000000;
+    flex: 1;
+}
+/* Style for the footer */
+footer {
+    background-color: #000000;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+.navbar {
+    background-color: #000000; /* Dark background */
+    color: #ffffff; /* White text color */
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    background: rebeccapurple;
-    color: ghostwhite;
-    font-family:Arial, Helvetica, sans-serif;
+.navbar .navbar-brand {
+    color: #ffffff; /* White text color for the brand */
+    font-size: 24px; /* Larger font size */
+    text-align: center; /* Center the text */
+    margin: 0 auto; /* Center the brand */
 }
+.hero {
+    background-image: url('/assets/images/image1.png'); /* Add the background image */
+    background-size: cover; /* Ensure the image covers the entire section */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    height: 100vh; /* Make the hero section full height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    text-align: center;
+}
+
+.hero-content {
+    background: rgba(0, 0, 0, 0.5); /* Optional: Add a dark overlay */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.hero .btn {
+    background-color: #1db954;
+    color: #ffffff;
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 20px;
+    text-decoration: none;
+}
+.highlight {
+    font-weight: bold;
+    color: #1db954; /* Spotify green */
+    font-size: 1.2em; /* Increase font size */
+}
+.container {
+    padding: 20px;
+    font-size: 24px;
+    color: #ffffff;
+    text-align: center;
+}
+.card {
+    background-color: #1db954;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 0px;
+    margin: 10px;
+    text-align: center;
+}
+.card h3 {
+    font-size: 36px;
+    
+}
+.card p {
+    font-size: 24px;
+   
+}
+.card-body i {
+    font-size: 36px; /* Adjust the size of the icon */
+    margin-bottom: 15px; /* Add space below the icon */
+    display: block; /* Ensure the icon is displayed as a block element */
+}
+.container-fluid {
+    padding: 20px;
+    font-size: 24px;
+    color: #ffffff;
+    text-align: center;
+    background-color: #1db954;
+}
+
+
+
+/* Center the form container */
+.form-container {
+    width: auto;
+    margin: auto;
+    padding: 0px;
+    border-radius: 10px; /* Optional: Add rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+    background: url(/assets/images/image1.png); /* Add the background image */
+    background-size: cover;
+    background-position: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    position: relative; /* Ensure the container is positioned relative to the background image */
+    z-index: 1; /* Ensure the container is above the background image */
+    
+}
+
+/* Style for form headings */
+.card-title {
+    color: #000000;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Center the form labels */
+.form-label {
+    color: #000000;
+    font-weight: bold;
+    text-align: center;
+    display: block;
+ 
+}
+
+/* Style for form inputs */
+.form-control {
+    background-color: #f8f9fa;
+    color: #000000;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+/* Style for the submit button */
+.btn-primary {
+    background-color: #007bff; /* Bootstrap primary blue color */
+    border: none;
+    color: #ffffff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Darker blue for hover effect */
+}
+
+
+
+
+
+
+
+
+
+/* style for playlist file*/
+
+
+
