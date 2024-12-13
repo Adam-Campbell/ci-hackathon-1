@@ -39,6 +39,30 @@ class ApiClient {
         return this.fetch(url);
     }
 
+    async post(url, data) {
+        return this.fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+    }
+
+    /**
+     * This method encapsulates the logic for searching for a track, with a maximum number of 
+     * pages to search through before giving up.
+     * Thus, other parts of the code can call this method to search for a track matching a query, 
+     * and speicify the maximum number of pages to search, without having to worry precisely which 
+     * page of results the matching track appeared on.
+     * @param {*} query 
+     * @param {*} maxRequests 
+     */
+    async searchForTrack(query, maxRequests = 1) {
+        // Implement later
+        // Return a promise that either resolves to a track object or null.
+    }
+
     reportRequests() {
         const now = Date.now();
         ApiClient.#requestTimestamps.push(now);
