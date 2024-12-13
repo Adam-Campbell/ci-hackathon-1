@@ -172,17 +172,8 @@ export class TrackCache {
     }
 
     async lookupTrack(letter) {
-        console.log(`Looking up track for letter ${letter}`);
         const trackId = TrackCache.singleLetterTrackIds[letter];
         const data = await this.apiClient.get(`https://api.spotify.com/v1/tracks/${trackId}`);
-        // return {
-        //     name: data.name,
-        //     imageUrl: data.album.images[2].url,
-        //     artistName: data.artists[0].name,
-        //     duration: formatSongLength(data.duration_ms),
-        //     id: data.id,
-        //     uri: data.uri
-        // };
         return formatTrack(data);
     }
 }
@@ -202,14 +193,6 @@ export async function getTracksForToken(token) {
     const data = await apiClient.get(`https://api.spotify.com/v1/search?q=${token}&type=track&limit=50`);
     for (const track of data.tracks.items) {
         if (track.name.toLowerCase() === token) {
-            // const formattedTrack = {
-            //     name: track.name,
-            //     imageUrl: track.album.images[2].url,
-            //     artistName: track.artists[0].name,
-            //     duration: formatSongLength(track.duration_ms),
-            //     id: track.id,
-            //     uri: track.uri
-            // };
             const formattedTrack = formatTrack(track);
             return [formattedTrack];
         }
@@ -242,19 +225,45 @@ export async function constructPlaylistTracks(message) {
 export async function createPlaylist(playlistName, message) {
     // Construct the tracks for the playlist (we do this first so that if anything goes wrong
     // and we can't find tracks for the message, we don't create an empty playlist).
+    const tracks = await constructPlaylistTracks(message);
 
     // Assuming tracks are constructed successfully, we then create the playlist.
     // We need to get the user's ID first. For now, just call the /me endpoint here.
     // In future, we will probably call this on app startup and store users profile information.
     // Now, once the playlist is created, we get a response that includes the playlist ID.
+    const apiClient = ApiClient.getInstance();
+    const user = await apiClient.get("https://api.spotify.com/v1/me");
+    const userId = user.id;
+    const emptyPlaylist = await apiClient.post(`https://api.spotify.com/v1/users/${userId}/playlists`, {
+        name: playlistName
+    });
+    const playlistId = emptyPlaylist.id;
 
     // We then add the tracks to the playlist. We need to call the /playlists/{playlist_id}/tracks endpoint.
     // We can add up to 100 tracks at a time, so we need to batch the tracks into groups of 100. For the 
     // initial implementation we will just assume that there aren't more than 100 tracks in the playlist, 
     // but in future we should add batching.
+    const trackUris = tracks.map(track => track.uri);
+    const addTrackResponse = await apiClient.post(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+        uris: trackUris
+    });
+
 
     // If we get around to implementing playlist image generation, then we would also call the 
     // /playlists/{playlist_id}/images endpoint here (it is a PUT request).
+
+
+    // Finally, we return the playlist object.
+    const playlistObject = {
+        name: playlistName,
+        id: playlistId,
+        imageUrl: tracks[0].imageUrl, // just a placeholder, we can implement playlist image generation later
+        externalUrl: emptyPlaylist.external_urls.spotify,
+        tracks: tracks
+    };
+    console.log(playlistObject);
+    return playlistObject;
+    
 }
 
 
