@@ -7,7 +7,7 @@ import { createPlaylist } from "./playlistCreation.js";
 window.isLoggedIn = isLoggedIn;
 
 
-initializeLoginState();
+//initializeLoginState();
 
 window.createPlaylist = createPlaylist;
 

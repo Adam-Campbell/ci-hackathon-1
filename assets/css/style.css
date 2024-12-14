@@ -118,10 +118,20 @@ footer {
     padding: 20px;
     border-radius: 10px; /* Optional: Add rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
-    background: url(../images/image1.png) no-repeat center center; /* Add the background image */
+    background: 
+        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+        url(../images/image1.png); /* Adds background image with overlay to enhance readability */
     background-size: cover; /* Ensure the image covers the entire container */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-position: center; /* Center the image */
     position: relative; /* Ensure the container is positioned relative to the background image */
     z-index: 1; /* Ensure the container content is above the background image */
+}
+
+.form-container h2 {
+    color: ghostwhite;
+    text-align: center;
+    margin-bottom: 1.5rem;
 }
 
 /* Style for form headings */
@@ -174,6 +184,11 @@ footer {
 
 
 /* style for playlist file*/
+
+
+
+
+
 .playlist-container {
     padding: 0px;
     text-align: center;
@@ -192,36 +207,126 @@ footer {
 
 
 }
-.track{
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    border: 2px solid #1db954;
-    border-radius: 5px;
-    margin: 10px;
-    width: 90%;
-    background-color: #1db954;
-    color: #ffffff;
-    text-align: center;
-}
-.track img{
-    width: 100px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 5px;
+
+
+.playlist-track-title {
+    font-size: 30px;
+    font-weight: bold;
 }
 
-.track-details{
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.hide {
+    display: none !important;
+}
+
+
+
+
+
+/*************************
+  Playlist sharer styles
+*************************/
+
+#playlist-sharer-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 10px;
-    font-size: 30px;
+    padding: 1rem;
 }
-playlist-track-title{
-    font-size: 30px;
-    font-weight: bold;
+
+.playlist-sharer-title {
+    color: ghostwhite;
+    text-align: center;
 }
+
+.playlist-link-container {
+    background: #222;
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+}
+
+
+#copy-button {
+    color: ghostwhite;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-left: 2rem;
+    background: none;
+    border: none;
+}
+
+
+
+/************************
+  Playlist track styles
+************************/
+
+#playlist-display-container {
+    padding: 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+
+#playlist-tracks-container {
+    padding-left: 0; /* Remove default padding */
+}
+
+.track {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+}
+
+.track-image {
+    border-radius: 4px;
+    margin-right: 1rem;
+}
+
+.track-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.track-name {
+    font-weight: 700;
+    color: ghostwhite;
+}
+
+.track-duration {
+    margin-left: auto;
+}
+
+
+
 
 
