@@ -13,4 +13,8 @@ Deployment: Step by step process for deploying to GitHub Pages
 Testing: Validation of HTML/CSS/JavaScript, Lighthouse Audits, Bugs
 Credits: Content References, Media References, Acknowledgements
 
-**Title** : **Spotify Playlist Transfer Protocol**
+**Title** :
+**Spotify Playlist Transfer Protocol**
+**Live Site link**
+:**https://adam-campbell.github.io/ci-hackathon-1/**
+**Brief Introduction**:
