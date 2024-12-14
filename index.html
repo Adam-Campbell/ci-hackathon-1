@@ -89,7 +89,47 @@
         </div> <!-- end landing-page-wrapper -->
 
 
-        <div id="app-wrapper">
+        <div id="app-wrapper" class="hide">
+
+            <div id="create-playlist-form-container" class="form-container mt-5">
+                <div class="container">
+                    <div class="col-md-8 col-lg-6">
+                        <div class="form-card">
+                            <div class="card-body">
+                                <h2 class="card-title text-center mb-4">Create your playlist</h2>
+                                <form id="create-playlist-form">
+                                    <div class="mb-3 text-center">
+                                        <label for="playlist-title" class="form-label"></label>
+                                        <input type="text" class="form-control" name="playlistTitle" id="playlist-title" required
+                                            placeholder="Playlist Title">
+                                    </div>
+                                    <div class="mb-3 text-center">
+                                        <label for="playlist-message" class="form-label"></label>
+                                        <textarea placeholder="Playlist Message" class="form-control" name="playlistMessage" id="playlist-message" rows="3"
+                                            required></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary w-100">Create Playlist</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="playlist-sharer-container" class="hide">
+                <h2 class="playlist-sharer-title">Here is your playlist!</h2>
+                <div class="playlist-link-container">
+                    <a id="sharer-link" href="#" target="_blank"></a>
+                    <button id="copy-button"><i class="fa-regular fa-copy"></i></button>
+                </div>
+                <button id="reset-button" class="btn btn-primary mt-4">Ready to make another?</button>
+            </div>
+
+            <div id="playlist-display-container" class="hide">
+                <h2 id="playlist-name"></h2>
+                <ul id="playlist-tracks-container"></ul>
+            </div>
+
 
         </div>
         
@@ -107,15 +147,15 @@
         </div>
     </footer>
 
-
-
+        <!-- Our JS -->
+        <script type="module" src="assets/js/app.js"></script>
         <!-- Bootstrap JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
             </script>
         <script src="https://kit.fontawesome.com/8669b8ad66.js" crossorigin="anonymous"></script>
-        <!-- Our JS -->
-        <script type="module" src="assets/js/app.js"></script>
+        
+        
 </body>
 
 </html>
