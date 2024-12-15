@@ -21,7 +21,7 @@
         </nav>
     </header>
     <main>
-        <div class="form-container mt-5">
+        <div id="create-playlist-form-container" class="form-container mt-5">
             <div class="container">
                 <div class="col-md-8 col-lg-6">
                     <div class="form-card">
@@ -30,13 +30,13 @@
                             <form id="create-playlist-form">
                                 <div class="mb-3 text-center">
                                     <label for="playlist-title" class="form-label"></label>
-                                    <textarea class="form-control" id="playlist-title" rows="1"
-                                        required>Playlist Title</textarea>
+                                    <input type="text" class="form-control" name="playlistTitle" id="playlist-title" required
+                                        placeholder="Playlist Title">
                                 </div>
                                 <div class="mb-3 text-center">
                                     <label for="playlist-message" class="form-label"></label>
-                                    <textarea class="form-control" id="playlist-message" rows="3"
-                                        required>Playlist Message</textarea>
+                                    <textarea placeholder="Playlist Message" class="form-control" name="playlistMessage" id="playlist-message" rows="3"
+                                        required></textarea>
                                 </div>
                                 <button type="submit" class="btn btn-primary w-100">Create Playlist</button>
                             </form>
@@ -44,22 +44,26 @@
                     </div>
                 </div>
             </div>
+        </div>
 
+        <div id="playlist-sharer-container" class="hide">
+            <h2 class="playlist-sharer-title">Here is your playlist!</h2>
+            <div class="playlist-link-container">
+                <a id="sharer-link" href="#" target="_blank"></a>
+                <button id="copy-button"><i class="fa-regular fa-copy"></i></button>
+            </div>
+            <button id="reset-button" class="btn btn-primary mt-4">Ready to make another?</button>
         </div>
-    </main>
-    <div class="playlist-container mt-5">
-        <h2 class="playlist-track-title">Here is your Playlist:</h2>
-        <div class="playlist-tracklist-container">
-            <textarea class="form-control" id="playlist-title" rows="1"
-            required>Your playlist </textarea>
+
+        <div id="playlist-display-container" class="hide">
+            <h2 id="playlist-name"></h2>
+            <ul id="playlist-tracks-container"></ul>
         </div>
+
+
     </div>
     
-    
-
-
-
-
+</main>
 
     <div class=" track-container">
         <div class="track">
