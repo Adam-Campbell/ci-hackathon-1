@@ -133,7 +133,7 @@ function formatTrack(trackObject) {
     };
 }
 
-
+const permittedCharacters = "abcdefghijklmnopqrstuvwxyz0123456789!?_";
 
 /**
  * This class is a custom data structure that allows us to look up single-letter songs by letter.
@@ -181,6 +181,7 @@ export class TrackCache {
         "!": "1A05ibu1DXGIt0F62NG7xU", // 6vSui5MRtBGmOP3RL8D3M5 is !!!
         "?": "349xMh3pHoSafOloonyQo0",
         "delimeter": "0NjGohOFKKxpJLLAovsEtO",  // gives the string "______"
+        "_": "0NjGohOFKKxpJLLAovsEtO",         // above one left for clarity, but this is the one we use
         "i'm": "1Z748upUJ4SxR1QGcnQKoj",    // don't know if I'll use any of these yet
         "you're": "6owC3XvZFPkaDfMiOQPi22",
         "it's": "2k7ILhNw7jB73x0ireS5kY",
@@ -257,8 +258,18 @@ export async function getTracksForToken(token) {
     }
     // If we can't match the whole token, we spell it out instead.
     // The requests run in parallel.
+    // But first, we pad the token with the delimiter track on either side
+    //token = `_${token}_`;
     const trackCache = TrackCache.getInstance();
-    const tracks = await Promise.all([...token].map(letter => trackCache.get(letter)));
+    // We pad the word with delimiters, filter out any characters not in permittedCharacters,
+    // and then map each character to a promise that resolves to a track object.
+    const characterPromises = `_${token}_`
+        .split("")
+        .filter(letter => permittedCharacters.includes(letter))
+        .map(letter => trackCache.get(letter));
+    //const tracks = await Promise.all(charArray.map(letter => trackCache.get(letter)));
+    // We await the promises and return the result.
+    const tracks = await Promise.all(characterPromises);
     return tracks;
 }
 
