@@ -272,6 +272,7 @@ footer {
     border-radius: 4px;
     display: flex;
     align-items: center;
+    max-width: 100%;
 }
 
 
@@ -284,6 +285,12 @@ footer {
     border: none;
 }
 
+#sharer-link {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+}
 
 
 /************************
