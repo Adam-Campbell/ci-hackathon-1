@@ -196,6 +196,42 @@ In our project, we have used pixel measurements for defining the dimensions of i
 - The service layer utilises smart caching to achieve this without excessive API calls.
   
   # Website Features:
+### Let me break down what this code is doing. It's implementing authentication with Spotify's API. Let me explain the core functionality:
+1) First, let's understand the flow of how Spotify authentication works:
+- User clicks "Login with Spotify"
+- They're redirected to Spotify's login page
+- After logging in, Spotify redirects back to our app with an access token in the URL
+- This token is then used to make API calls to Spotify
+- If no token in URL, checks localStorage for a previously saved token
+- If found and not expired, loads it into memory
+**Now, let's go through each main function in the original code:**
+  #### initializeLoginState()
+2) This function does two main things:
+- Checks if there's an access token in the URL (this happens right after Spotify redirects back)
+- If found, it saves the token to localStorage and memory
+- It also saves when the token will expire
+- Then removes the token from the URL for security
+  #### isLoggedIn()
+- This function checks if the user is logged in by:
+- First checking if there's a token in memory
+- If not, checking localStorage for a valid, non-expired token
+- Returns true if a valid token is found, false otherwise
+ #### beginLoginFlow()
+- This starts the login process by:
+- Building the Spotify authorization URL with:
+- Your app's client ID
+- The permissions (scopes) your app needs
+- The URL Spotify should redirect back to
+- Redirecting the user to Spotify's login page
+#### getAccessToken()
+- Simply returns the current access token if one exists.
+  
+
+
+
+
+
+
 
   # Technologies Used:
   
