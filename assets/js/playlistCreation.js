@@ -73,6 +73,32 @@
  * 
  * 
  * 
+ * ______________________________________________________________________________________________________
+ * 
+ * Find tracks with names 0 through 9 and add them to the trackCache. Also, add common punctuation,
+ * particularly the comma, period, exclamation mark, and question mark.
+ * 
+ * Find something to use a delimiter between words. For now, either hyphen or underscore.
+ * 
+ * Consider what to do with contractions. Do we search for a match with the contraction in place, or
+ * do we ignore it? Do we replace contracted words with their expanded form? If we have to spell out
+ * a contraction, do we ignore the apostrophe?
+ * 
+ * - If the contraction is a pronoun, use the pronoun strategy (consider surrounding tokens).
+ * - If the contraction isn't a pronoun, or if the pronoun strategy fails, then just treat
+ *   as normal word - try to match with apostrophe in place.
+ * - If we have to spell out a contraction, ignore the apostrophe.
+ * 
+ * Pronouns:
+ *  I      you     he     she     it     we     they    
+ *  my     your    his    her     its    our    their
+ *  me     you     him    her     it     us     them
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
  * 
  * 
  * 
@@ -106,6 +132,75 @@ function formatTrack(trackObject) {
         uri: trackObject.uri
     };
 }
+
+const permittedCharacters = "abcdefghijklmnopqrstuvwxyz0123456789!?_";
+
+/**
+ * 
+ *   Pronoun strategy specific notes
+ * 
+ *   Tokenise the message
+ *   Determine which tokens are pronouns
+ *   Use pronouns object to lookup whether pre, post or both.
+ * 
+ * 
+ * 
+ */
+
+
+/**
+ * pre - pronoun is a prefix
+ * post - pronoun is a suffix
+ * both - pronoun can be a prefix or a suffix
+ */
+const pronouns = {
+    "I": "pre",
+    "I'm": "pre",
+    "I've": "pre",
+    "I'd": "pre",
+    "I'll": "pre",
+    "you": "both",
+    "you're": "pre",
+    "you've": "pre",
+    "you'd": "pre",
+    "you'll": "pre",
+    "me": "post",
+    "my": "pre",
+    "mine": "post",
+    "we": "pre",
+    "we're": "pre",
+    "we've": "pre",
+    "we'd": "pre",
+    "we'll": "pre",
+    "they": "pre",
+    "they're": "pre",
+    "they've": "pre",
+    "they'd": "pre",
+    "they'll": "pre",
+    "them": "post",
+    "it": "both",
+    "it's": "pre",
+    "he": "pre",
+    "he's": "pre",
+    "he'll": "pre",
+    "he'd": "pre",
+    "she": "pre",
+    "she's": "pre",
+    "she'll": "pre",
+    "she'd": "pre",
+    "us": "post",
+    "our": "pre",
+    "ours": "post",
+    "her": "both",
+    "hers": "post",
+    "him": "post",
+    "his": "both"
+};
+
+
+
+
+
 
 
 
@@ -141,7 +236,40 @@ export class TrackCache {
         "w": "2BWQIsuarfRoeqmnPvRO97",
         "x": "1wODklZOdPg66i7RsyMptS",
         "y": "2nfYd5u63QE2bhlYX4UvDH",
-        "z": "37zezNOHfSJu088cJNbdtY" 
+        "z": "37zezNOHfSJu088cJNbdtY",
+        "0": "5DQQHyVVRQbrjwyt43aFhj",
+        "1": "6D2RrUwborgyTLm63zvwZl",
+        "2": "0rmiPGYCyddPq6J52y2CtN",
+        "3": "7EJVqS0DDYf2Uy5z4Jyo8G",
+        "4": "55p1Ghm6S69PHd7mztbXgb",
+        "5": "6hyvdte2QylV9yOJ0erH94",
+        "6": "7nkHTLoRFYbAF6PI4TUI6v",
+        "7": "5ykbOijJEfRhuo2Td1m0Qd",
+        "8": "4aZMCxWGgfCb0B9DJQTLGI",
+        "9": "1C7KSXR2GVxknex6I4ANco",
+        "!": "1A05ibu1DXGIt0F62NG7xU", // 6vSui5MRtBGmOP3RL8D3M5 is !!!
+        "?": "349xMh3pHoSafOloonyQo0",
+        "delimeter": "0NjGohOFKKxpJLLAovsEtO",  // gives the string "______"
+        "_": "0NjGohOFKKxpJLLAovsEtO",         // above one left for clarity, but this is the one we use
+        "i'm": "1Z748upUJ4SxR1QGcnQKoj",    // don't know if I'll use any of these yet
+        "you're": "6owC3XvZFPkaDfMiOQPi22",
+        "it's": "2k7ILhNw7jB73x0ireS5kY",
+        "don't": "1huvTbEYtgltjQRXzrNKGi",
+        "can't": "42RzJ3eJARwTlUVVYdZQ10",
+        "won't": "6AgN8BrRPwYj2EH1QziDVN",
+        "i've": "10BaF5gesuqCCMOcDvo2oK",
+        "we'll": "0S7KFXKqYPA3XHXUyS5JPe",
+        "we're": "09kcWdIxuFW8NPuuPPlcoq",
+        "ain't": "6v10Cb6sQksPw4pIs3ksGr",
+        "you're": "6owC3XvZFPkaDfMiOQPi22",
+        "i'd": "2yKHZIJULt0scfXh8nLDoN",
+        "he'll": "4FWgzYxQBYYiIwJmwHdIZG", // gives "he will"
+        "she'll": "1XZ4HVZiEIjhbOS4QGp1sH",
+        "they'll": "4zA4JIlPXfmvDa7mOnvaxa", // gives "they will"
+        "there's": "2H4CfAE5aM11KtLWsds0Fd",
+        "i'll": "27sKtH0PZpASkN8H3ZJOQf", // gives "I will"
+        "you'll": "0yRK8LQs9BJXGjv8ffaGUh",  // gives "you will"
+        "let's": "2y8QLwQome3hDk8QqTWC7X"
     };
     static #instance = null;
 
@@ -199,8 +327,18 @@ export async function getTracksForToken(token) {
     }
     // If we can't match the whole token, we spell it out instead.
     // The requests run in parallel.
+    // But first, we pad the token with the delimiter track on either side
+    //token = `_${token}_`;
     const trackCache = TrackCache.getInstance();
-    const tracks = await Promise.all([...token].map(letter => trackCache.get(letter)));
+    // We pad the word with delimiters, filter out any characters not in permittedCharacters,
+    // and then map each character to a promise that resolves to a track object.
+    const characterPromises = `_${token}_`
+        .split("")
+        .filter(letter => permittedCharacters.includes(letter))
+        .map(letter => trackCache.get(letter));
+    //const tracks = await Promise.all(charArray.map(letter => trackCache.get(letter)));
+    // We await the promises and return the result.
+    const tracks = await Promise.all(characterPromises);
     return tracks;
 }
 
