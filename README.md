@@ -9,10 +9,10 @@
 2. [Features](#features)
 3. [ResponsivityExampleImage](#responsivityexampleimage)
 4. [UserExperience](#userexperience)
-5. [Usage](#usage)
-6. [Contributing](#contributing)
-7. [License](#license)
-
+5. [FutureFeatures(#futurefeatures)
+6. [WebsiteFeatures](#websitefeatures)
+7. [TechnologiesUsed](#technologiesused)
+8. [Testing](#testing)
 # Introduction
 ## Spotify Playlist Trasfer Protocol:
 #### SPTP is a web application that allows users to create unique Spotify playlists where the song titles collectively spell out a custom message. It combines creativity with music sharing in an innovative way.
@@ -144,19 +144,130 @@
 - Responsive images
 - Flexible grid layouts
 #### Using Color Palette
-  We have carefully selected our project's color palette using the Coolors website. This tool allows us to generate and refine color schemes that enhance the visual appeal and user experience of our project. Below is the color palette we chose:![pixelimage ](https://github.com/user-attachments/assets/226ae131-d5a1-44e6-9547-e1f338373fe0)
+  We have carefully selected our project's color palette using the Coolors website. This tool allows us to generate and refine color schemes that enhance the visual appeal and user experience of our project. Below is the color palette we chose:
+ 
+ ![pixelimage ](https://github.com/user-attachments/assets/226ae131-d5a1-44e6-9547-e1f338373fe0)
 
 - Why We Chose This Palette
 Consistency: The colors work well together, providing a cohesive look throughout the application.
 Accessibility: The palette includes colors with good contrast ratios, ensuring readability for all users.
 Aesthetics: The colors were selected to create a modern and attractive design.
+
 ![color palate](https://github.com/user-attachments/assets/0ac66e40-3a87-4088-83f1-19402da39fb5)
 ### Using Google Fonts
 We have integrated Google Fonts into our project to enhance typography and improve the overall design. Specifically, we are using the Roboto font. Here are the steps to include Google Fonts in your project:
 Embed the Font in HTML: Add the following <link> tag inside the <head> section of your HTML file.
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
 ![googlefont-image](https://github.com/user-attachments/assets/412fe9c5-0421-46fb-9239-1db61e4cc846)
+
 ### Using Pixels for Images:
 In our project, we have used pixel measurements for defining the dimensions of images. This approach ensures consistent rendering across different devices and screen sizes. Here is a brief guide on how to use pixels for images:
+
 ![pixelimage ](https://github.com/user-attachments/assets/24c9f8d1-679d-441a-ae6f-55b9dba5773e)
 # Future Features
+## USER STORIES:
+**1) Enhanced auth flow:**
+**As a: User**
+- I can: Stay logged into the app on a long term basis, without having to do any additional work after I initially grant permission.
+- So that: I don't have keep logging in.
+  
+**Acceptance Criteria:**
+- The app uses Spotify's Authorization Code with PKCE flow.
+- The app successfully uses the refresh token to obtain new auth tokens with no additional input from the user.
+
+**2) Realtime UI feedback:**
+
+**As a: User**
+- I can: See, in real time, an example of what my playlist will look like, as I'm typing out my message.
+- So that: I can see a preview prior to actually creating the playlist.
+  
+**Acceptance Criteria**
+- As the user types into the message input, the input calls the service layer on each change, and the response from the service is shown in the tracks UI in real time.
+  
+**3)  Realtime playlist track construction:**
+
+**As a: User**
+- I can: See a preview of my playlist tracks in real time, as I am entering the message
+- So that: I don't have to wait until the playlist is created in order to see the tracks.
+  
+**Acceptance Criteria:**
+- The service layer communicates with the Spotify API to find suitable tracks as the user is typing the message, and constructs a suitable track in order in real time, returning this for the UI to render.
+- The service layer utilises smart caching to achieve this without excessive API calls.
+  
+  # Website Features:
+### Let me break down what this code is doing. It's implementing authentication with Spotify's API. Let me explain the core functionality:
+1) First, let's understand the flow of how Spotify authentication works:
+- User clicks "Login with Spotify"
+- They're redirected to Spotify's login page
+- After logging in, Spotify redirects back to our app with an access token in the URL
+- This token is then used to make API calls to Spotify
+- If no token in URL, checks localStorage for a previously saved token
+- If found and not expired, loads it into memory
+**Now, let's go through each main function in the original code:**
+  #### initializeLoginState()
+2) This function does two main things:
+- Checks if there's an access token in the URL (this happens right after Spotify redirects back)
+- If found, it saves the token to localStorage and memory
+- It also saves when the token will expire
+- Then removes the token from the URL for security
+  #### isLoggedIn()
+- This function checks if the user is logged in by:
+- First checking if there's a token in memory
+- If not, checking localStorage for a valid, non-expired token
+- Returns true if a valid token is found, false otherwise
+ #### beginLoginFlow()
+- This starts the login process by:
+- Building the Spotify authorization URL with:
+- Your app's client ID
+- The permissions (scopes) your app needs
+- The URL Spotify should redirect back to
+- Redirecting the user to Spotify's login page
+#### getAccessToken()
+- Simply returns the current access token if one exists.
+  
+
+
+
+
+
+
+
+  # Technologies Used:
+  
+  ## Languages:
+  - JavaScript: The primary language used for the logic and functionality of the application.
+  - HTML: Used for structuring the web pages.
+  - CSS: Employed for styling and layout of the web pages.
+  - Bootstrap: Utilized for responsive design and pre-built components.
+   - Spotify API: Integrated to interact with Spotify services for playlist creation and management.
+  ## Frameworks:
+  - Bootstrap: Used for creating a responsive layout and modern design.
+   - Spotify API: Integrated for interacting with Spotify services, such as playlist creation and management.
+       These frameworks help enhance the user interface and provide functionalities related to Spotify playlist management.
+  - Libraries:
+  - Programs:
+ 
+  # Deployment:
+  # Testing:
+  Testing and validation os the website was carried out throughout the course of the project. This included regular debugging and testing using the Dev Tools as ptovided within Chrome Browser.
+
+   The W3C Validator is a tool used to check the validity of HTML and CSS code against the standards set by the World Wide Web Consortium (W3C). It helps ensure that your web pages are properly structured and 
+    follow web standards, which can improve cross-browser compatibility and accessibility.
+  
+ ![Screenshot 2024-12-14 235901](https://github.com/user-attachments/assets/68804a1b-825a-4a35-b977-456b5e1933c8)
+
+   ![Screenshot 2024-12-14 235850](https://github.com/user-attachments/assets/97f42fe3-c778-4bae-b787-ffcd5c2862ed)
+
+![Screenshot 2024-12-14 235123](https://github.com/user-attachments/assets/19869759-449e-4e5a-8152-ce358e340e4f)
+
+![Screenshot 2024-12-14 235003](https://github.com/user-attachments/assets/8704972e-d4d1-461f-ae37-cd64b210cd58)
+
+### Lighthouse Audits:
+
+
+![Screenshot 2024-12-15 222134](https://github.com/user-attachments/assets/c06eb4e9-8863-4f55-89a6-b19d8f91dd32)
+
+# Credits
+
+
