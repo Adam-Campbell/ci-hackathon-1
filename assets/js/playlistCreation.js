@@ -136,6 +136,75 @@ function formatTrack(trackObject) {
 const permittedCharacters = "abcdefghijklmnopqrstuvwxyz0123456789!?_";
 
 /**
+ * 
+ *   Pronoun strategy specific notes
+ * 
+ *   Tokenise the message
+ *   Determine which tokens are pronouns
+ *   Use pronouns object to lookup whether pre, post or both.
+ * 
+ * 
+ * 
+ */
+
+
+/**
+ * pre - pronoun is a prefix
+ * post - pronoun is a suffix
+ * both - pronoun can be a prefix or a suffix
+ */
+const pronouns = {
+    "I": "pre",
+    "I'm": "pre",
+    "I've": "pre",
+    "I'd": "pre",
+    "I'll": "pre",
+    "you": "both",
+    "you're": "pre",
+    "you've": "pre",
+    "you'd": "pre",
+    "you'll": "pre",
+    "me": "post",
+    "my": "pre",
+    "mine": "post",
+    "we": "pre",
+    "we're": "pre",
+    "we've": "pre",
+    "we'd": "pre",
+    "we'll": "pre",
+    "they": "pre",
+    "they're": "pre",
+    "they've": "pre",
+    "they'd": "pre",
+    "they'll": "pre",
+    "them": "post",
+    "it": "both",
+    "it's": "pre",
+    "he": "pre",
+    "he's": "pre",
+    "he'll": "pre",
+    "he'd": "pre",
+    "she": "pre",
+    "she's": "pre",
+    "she'll": "pre",
+    "she'd": "pre",
+    "us": "post",
+    "our": "pre",
+    "ours": "post",
+    "her": "both",
+    "hers": "post",
+    "him": "post",
+    "his": "both"
+};
+
+
+
+
+
+
+
+
+/**
  * This class is a custom data structure that allows us to look up single-letter songs by letter.
  * Possibly needs a better name.
  */
