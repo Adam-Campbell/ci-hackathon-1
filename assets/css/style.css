@@ -167,88 +167,341 @@ footer {
     background-color: #0056b3; /* Darker blue for hover effect */
 }
 
-
-
-
-
-
-
-/*playlist-sharer-container*/
-.playlist-sharer-container {
-    padding: 20px;
-    text-align: center;
-    background-color: #1db954;
-    color: #ffffff;
-
+/* Form Container Styles */
+.form-container {
+    max-width: 100%;
+    margin: 3rem auto;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    
+    /* Background image styling */
+    background-image: url('../images/image1.png');
+    background-size: cover;  /* This will scale the image to cover the container */
+    background-position: center;  /* Centers the image */
+    background-repeat: no-repeat;
+    
+    /* Add an overlay to ensure form content is readable */
+    position: relative;
+    isolation: isolate;  /* Creates a new stacking context */
 }
 
-.playlist-sharer-title {
-    font-size: 40px;
-    font-weight: bold;
-    color: #ffffff;
-    margin-bottom: 20px;
-    padding-right: 10px;
+/* Create an overlay for better contrast with form content */
+.form-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;  /* Shorthand for top: 0; right: 0; bottom: 0; left: 0; */
+    background: rgba(255, 255, 255, 0.9);  /* White overlay */
+    /* Or use a gradient overlay */
+    /* background: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85)); */
+    border-radius: inherit;  /* Matches parent's border radius */
+    z-index: -1;
+}
 
-   
+/* Ensure form content is positioned correctly relative to overlay */
+.form-card {
+    position: relative;
+    z-index: 1;
+    background: transparent;  /* Make card background transparent to show overlay */
 }
-.playlist-sharer-form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 30px;
-    color: white;
-    background-color: #1db954;
-    flex-wrap: wrap;
 
-}
-.playlist-link-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-   flex-wrap: wrap;
-    color:#ffffff;
-    background-color: white;
-    padding: 10px;
-    border: 2px solid black;
-    border-radius: 5px;
-    margin: 10px;
-    width: 30%;
-}
-.fa-regular{
+.card-title {
     color: #1db954;
-    margin-right: 10px;
-    font-size: 20px;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
 }
-.track{
+
+/* Form Input Styles */
+.form-control {
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #1db954;
+    box-shadow: 0 0 0 0.2rem rgba(29, 185, 84, 0.25);
+    outline: none;
+}
+
+/* Placeholder styles */
+.form-control::placeholder {
+    color: #888;
+}
+
+/* Input specific styles */
+#playlist-title {
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+#playlist-message {
+    resize: none;
+    min-height: 120px;
+    text-align: center;
+}
+
+/* Submit Button Styles */
+.btn-primary {
+    background-color: #1db954;
+    border: none;
+    padding: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 30px;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #1ed760;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(29, 185, 84, 0.2);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .form-container {
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    .form-card {
+        padding: 1rem;
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+    }
+}
+
+/* Remove unnecessary spacing when no label text */
+.form-label:empty {
+    display: none;
+}
+
+/* Animation for form elements */
+.form-control, .btn-primary {
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+
+
+
+
+/* playlist-sharer-container */
+#playlist-sharer-container {
+    background: linear-gradient(45deg, #1db954, #169c46);
+    padding: 2rem;
+    border-radius: 12px;
+    margin: 2rem auto;
+    max-width: 800px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+.playlist-sharer-title {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.playlist-link-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    padding: 1rem;
     display: flex;
     justify-content: space-between;
-    padding: 10px;
-    border: 2px solid #1db954;
-    border-radius: 5px;
-    margin: 10px;
-    width: 90%;
-    background-color: #1db954;
-    color: #ffffff;
-    text-align: center;
-}
-.track img{
-    width: 100px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 5px;
+    align-items: center;
+    margin: 1rem auto;
+    max-width: 600px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.track-details{
+#sharer-link {
+    color: #1db954;
+    text-decoration: none;
+    font-size: 1.1rem;
+    flex-grow: 1;
+    margin-right: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#copy-button {
+    background: none;
+    border: none;
+    color: #1db954;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+#copy-button:hover {
+    background: rgba(29, 185, 84, 0.1);
+    transform: scale(1.1);
+}
+
+#copy-button i {
+    font-size: 1.2rem;
+}
+
+#reset-button {
+    display: block;
+    margin: 1.5rem auto;  /* mt-4 equivalent + horizontal centering */
+    background-color: #1db954;
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 25px;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+/* Optional hover effect */
+#reset-button:hover {
+    transform: translateY(-2px);
+    background-color: #1ed760;
+}
+
+
+
+
+
+/* playlist-display-container */
+.playlist-tracks {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    font-size: 30px;
+    gap: 1rem;
+    margin-top: 2rem;
+
 }
-playlist-track-title{
-    font-size: 30px;
-    font-weight: bold;
+
+.track-card {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background-color: #1db954;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.track-card:hover {
+    background-color: #1ebed7;
+}
+
+.track-image {
+   
+    border-radius: 4px;
+    margin-right: 1rem;
+}
+
+.track-info {
+    flex: 1;
+}
+
+.track-title {
+    font-size: 1.1rem;
+    margin: 0;
+    color: white;
+}
+
+.track-artist {
+    font-size: 0.9rem;
+    color: #b3b3b3;
+    margin: 0;
+}
+
+.track-duration {
+    color: #b3b3b3;
+    margin: 0 1rem;
+}
+
+.play-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #1db954;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+.play-button:hover {
+    transform: scale(1.1);
+    background-color: #1ed760;
+}
+
+.playlist-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.action-button {
+    background-color: transparent;
+    border: 1px solid #1db954;
+    color: #1db954;
+    padding: 0.75rem 1.5rem;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.action-button:hover {
+    background-color: #1db954;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .playlist-display-container {
+        margin: 1rem;
+        padding: 1rem;
+    }
+    
+    .playlist-title {
+        font-size: 2rem;
+    }
+    
+    .playlist-actions {
+        flex-wrap: wrap;
+    }
+    
+    .action-button {
+        width: 100%;
+        justify-content: center;
+    }
 }
 
 

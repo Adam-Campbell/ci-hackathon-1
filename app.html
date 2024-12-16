@@ -23,22 +23,33 @@
     <main>
         <div id="create-playlist-form-container" class="form-container mt-5">
             <div class="container">
-                <div class="col-md-8 col-lg-6">
+                <div class="col-12 col-md-8 col-lg-6">
                     <div class="form-card">
                         <div class="card-body">
-                            <h2 class="card-title text-center mb-4">Create your playlist</h2>
+                            <h2 class="card-title text-center">Create your playlist</h2>
                             <form id="create-playlist-form">
-                                <div class="mb-3 text-center">
-                                    <label for="playlist-title" class="form-label"></label>
-                                    <input type="text" class="form-control" name="playlistTitle" id="playlist-title" required
-                                        placeholder="Playlist Title">
+                                <div class="mb-4">
+                                    <input type="text" 
+                                           class="form-control" 
+                                           name="playlistTitle" 
+                                           id="playlist-title"
+                                           required 
+                                           placeholder="Playlist Title"
+                                           autocomplete="off">
                                 </div>
-                                <div class="mb-3 text-center">
-                                    <label for="playlist-message" class="form-label"></label>
-                                    <textarea placeholder="Playlist Message" class="form-control" name="playlistMessage" id="playlist-message" rows="3"
-                                        required></textarea>
+                                
+                                <div class="mb-4">
+                                    <textarea placeholder="Playlist Message" 
+                                              class="form-control" 
+                                              name="playlistMessage"
+                                              id="playlist-message" 
+                                              rows="3" 
+                                              required></textarea>
                                 </div>
-                                <button type="submit" class="btn btn-primary w-100">Create Playlist</button>
+                                
+                                <button type="submit" class="btn btn-primary w-100">
+                                    Create Playlist
+                                </button>
                             </form>
                         </div>
                     </div>
@@ -46,6 +57,9 @@
             </div>
         </div>
 
+
+        <-- Playlist Display -->
+        
         <div id="playlist-sharer-container" class="hide">
             <h2 class="playlist-sharer-title">Here is your playlist!</h2>
             <div class="playlist-link-container">
@@ -59,59 +73,164 @@
             <h2 id="playlist-name"></h2>
             <ul id="playlist-tracks-container"></ul>
         </div>
+        </div>
 
 
-    </div>
-    
-</main>
-
-    <div class=" track-container">
-        <div class="track">
-            <img src="track1.jpg" alt="Track 1">
-            <div class="track-details">
-                <span="track-title">Track 1</span>
-                    <span="track-artist">Artist 1</span>
+    </main>
+    <div class="playlist-tracks">
+        <!-- Example Track 1 -->
+        <div class="track-card">
+            <img src="/api/placeholder/120/120" alt="Album Cover" class="track-image">
+            <div class="track-info">
+                <h3 class="track-title">Track Name</h3>
+                <p class="track-artist">Artist Name</p>
             </div>
             <div class="track-duration">3:45</div>
+            <button class="play-button">
+                <i class="fas fa-play"></i>
+            </button>
         </div>
-        <div class="track">
-            <img src="track2.jpg" alt="Track 2">
-            <div class="track-details">
-                <span="track-title">Track 2</span>
-                    <span="track-artist">Artist 2</span>
-            </div>
 
-            <div class="track-duration">4:15</div>
+        <!-- Example Track 2 -->
+        <div class="track-card">
+            <img src="/api/placeholder/120/120" alt="Album Cover" class="track-image">
+            <div class="track-info">
+                <h3 class="track-title">Another Track</h3>
+                <p class="track-artist">Another Artist</p>
+            </div>
+            <div class="track-duration">4:20</div>
+            <button class="play-button">
+                <i class="fas fa-play"></i>
+            </button>
         </div>
-        <div class="track">
-            <img src="track2.jpg" alt="Track 2">
-            <div class="track-details">
-                <span="track-title">Track 2</span>
-                    <span="track-artist">Artist 2</span>
+        <!-- Example Track 3 -->
+        <div class="track-card">
+            <img src="/api/placeholder/120/120" alt="Album Cover" class="track-image">
+            <div class="track-info">
+                <h3 class="track-title">Another Track</h3>
+                <p class="track-artist">Another Artist</p>
             </div>
-
-            <div class="track-duration">4:15</div>
+            <div class="track-duration">4:20</div>
+            <button class="play-button">
+                <i class="fas fa-play"></i>
+            </button>
         </div>
-        <div class="track">
-            <img src="track2.jpg" alt="Track 2">
-            <div class="track-details">
-                <span="track-title">Track 2</span>
-                    <span="track-artist">Artist 2</span>
+        <!-- Example Track 4 -->
+        <div class="track-card">
+            <img src="/api/placeholder/120/120" alt="Album Cover" class="track-image">
+            <div class="track-info">
+                <h3 class="track-title">Another Track</h3>
+                <p class="track-artist">Another Artist</p>
             </div>
-
-            <div class="track-duration">4:15</div>
+            <div class="track-duration">4:20</div>
+            <button class="play-button">
+                <i class="fas fa-play"></i>
+            </button>
         </div>
-        <div class="track">
-            <img src="track2.jpg" alt="Track 2">
-            <div class="track-details">
-                <span="track-title">Track 2</span>
-                    <span="track-artist">Artist 2</span>
+        <!-- Example Track 5 -->
+        <div class="track-card">
+            <img src="/api/placeholder/120/120" alt="Album Cover" class="track-image">
+            <div class="track-info">
+                <h3 class="track-title">Another Track</h3>
+                <p class="track-artist">Another Artist</p>
             </div>
-
-            <div class="track-duration">4:15</div>
+            <div class="track-duration">4:20</div>
+            <button class="play-button">
+                <i class="fas fa-play"></i>
+            </button>
+        </div>
+        <!-- Example Track 6 -->
+        <div class="track-card">
+            <img src="/api/placeholder/120/120" alt="Album Cover" class="track-image">
+            <div class="track-info">
+                <h3 class="track-title">Another Track</h3>
+                <p class="track-artist">Another Artist</p>
+            </div>
+            <div class="track-duration">4:20</div>
+            <button class="play-button">
+                <i class="fas fa-play"></i>
+            </button>
+        </div>
+        <!-- Example Track 7 -->
+        <div class="track-card">
+            <img src="/api/placeholder/120/120" alt="Album Cover" class="track-image">
+            <div class="track-info">
+                <h3 class="track-title">Another Track</h3>
+                <p class="track-artist">Another Artist</p>
+            </div>
+            <div class="track-duration">4:20</div>
+            <button class="play-button">
+                <i class="fas fa-play"></i>
+            </button>
+        </div>
+        <!-- Example Track 8 -->
+        <div class="track-card">
+            <img src="/api/placeholder/120/120" alt="Album Cover" class="track-image">
+            <div class="track-info">
+                <h3 class="track-title">Another Track</h3>
+                <p class="track-artist">Another Artist</p>
+            </div>
+            <div class="track-duration">4:20</div>
+            <button class="play-button">
+                <i class="fas fa-play"></i>
+            </button>
+        </div>
+        <!-- Example Track 9 -->
+        <div class="track-card">
+            <img src="/api/placeholder/120/120" alt="Album Cover" class="track-image">
+            <div class="track-info">
+                <h3 class="track-title">Another Track</h3>
+                <p class="track-artist">Another Artist</p>
+            </div>
+            <div class="track-duration">4:20</div>
+            <button class="play-button">
+                <i class="fas fa-play"></i>
+            </button>
+        </div>
+        <!-- Example Track 10 -->
+        <div class="track-card">
+            <img src="/api/placeholder/120/120" alt="Album Cover" class="track-image">
+            <div class="track-info">
+                <h3 class="track-title">Another Track</h3>
+                <p class="track-artist">Another Artist</p>
+            </div>
+            <div class="track-duration">4:20</div>
+            <button class="play-button">
+                <i class="fas fa-play"></i>
+            </button>
+        </div>
+        <!-- Example Track 11 -->
+        <div class="track-card">
+            <img src="/api/placeholder/120/120" alt="Album Cover" class="track-image">
+            <div class="track-info">
+                <h3 class="track-title">Another Track</h3>
+                <p class="track-artist">Another Artist</p>
+            </div>
+            <div class="track-duration">4:20</div>
+            <button class="play-button">
+                <i class="fas fa-play"></i>
+            </button>
+        </div>
+        <!-- Example Track 12 -->
+        <div class="track-card">
+            <img src="/api/placeholder/120/120" alt="Album Cover" class="track-image">
+            <div class="track-info">
+                <h3 class="track-title">Another Track</h3>
+                <p class="track-artist">Another Artist</p>
+            </div>
+            <div class="track-duration">4:20</div>
+            <button class="play-button">
+                <i class="fas fa-play"></i>
+            </button>
         </div>
     </div>
 
+    <div class="playlist-actions">
+        <button class="action-button"><i class="fas fa-share"></i> Share</button>
+        <button class="action-button"><i class="fas fa-heart"></i> Like</button>
+        <button class="action-button"><i class="fas fa-download"></i> Download</button>
+    </div>
+    </div>
 
 
 
